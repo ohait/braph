@@ -6,6 +6,7 @@ import (
 
 type LineGraph []float64
 
+// display a graph with everything below the plot line filled
 func (this LineGraph) RanderFillBelow(min, max float64) string {
 	return this.Render(func(in float64) uint8 {
 		b := int(4 * (in - min) / (max - min))
@@ -25,6 +26,26 @@ func (this LineGraph) RanderFillBelow(min, max float64) string {
 			} else {
 				return 0
 			}
+		}
+	})
+}
+
+// render the graph by plotting a line between min and max
+func (this LineGraph) RanderPlot(min, max float64) string {
+	return this.Render(func(in float64) uint8 {
+		b := int(4 * (in - min) / (max - min))
+		//log.Printf("in: %v, b: %v", in, b)
+		switch b {
+		case 0:
+			return 8
+		case 1:
+			return 4
+		case 2:
+			return 2
+		case 3:
+			return 1
+		default:
+			return 0
 		}
 	})
 }
