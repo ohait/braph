@@ -7,7 +7,7 @@ type Map struct {
 	cells  []uint16
 }
 
-func NewGraph(width, height int) *Map {
+func NewMap(width, height int) *Map {
 	this := Map{
 		cwidth: width / 2,
 		cells:  make([]uint16, ((width+1)/2)*((height+3)/4)),
