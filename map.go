@@ -2,13 +2,13 @@ package braph
 
 import "log"
 
-type Graph struct {
+type Map struct {
 	cwidth int
 	cells  []uint16
 }
 
-func NewGraph(width, height int) *Graph {
-	this := Graph{
+func NewGraph(width, height int) *Map {
+	this := Map{
 		cwidth: width / 2,
 		cells:  make([]uint16, ((width+1)/2)*((height+3)/4)),
 	}
@@ -16,7 +16,7 @@ func NewGraph(width, height int) *Graph {
 	return &this
 }
 
-func (this *Graph) Set(x, y int, on bool) {
+func (this *Map) Set(x, y int, on bool) {
 	r := y / 4
 	c := x / 2
 	p := y%4 + 4*(x%2)
@@ -30,7 +30,7 @@ func (this *Graph) Set(x, y int, on bool) {
 	this.cells[c+r*this.cwidth] = v
 }
 
-func (this *Graph) Strings() []string {
+func (this *Map) Strings() []string {
 	out := []string{}
 	buf := []rune{}
 	for i, val := range this.cells {
